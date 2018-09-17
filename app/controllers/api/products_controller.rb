@@ -1,9 +1,8 @@
 class Api::ProductsController < ApplicationController
-
-before_action :set_product, only: [:show, :update, :destroy]
+  before_action :set_product, only: [:show, :update, :destroy]
 
   def index
-    render json: Product.all
+    render json: Product.order(created_at: :desc)
   end
 
   def show
@@ -25,6 +24,7 @@ before_action :set_product, only: [:show, :update, :destroy]
       render json: @product
     else
       render_error(@product)
+    end
   end
 
   def destroy
@@ -32,12 +32,11 @@ before_action :set_product, only: [:show, :update, :destroy]
   end
 
   private
-
     def set_product
       @product = Product.find(params[:id])
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :department, :price)
+      params.require(:product).permit(:name, :description, :price, :department)
     end
 end
