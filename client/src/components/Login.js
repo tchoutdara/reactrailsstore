@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import { login } from '.../fakeAuth'
+import { login } from '../fakeAuth'
 
-const Login = () => (
+const Login = ({ history }) => (
     <Fragment>
         <h3>Login</h3>
         <button
