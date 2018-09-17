@@ -16,7 +16,7 @@ before_action :set_product, only: [:show, :update, :destroy]
     if product.save
       render json: product
     else
-      render json: product.errors, status: 422
+      render_error(product)
     end
   end
 
@@ -24,7 +24,7 @@ before_action :set_product, only: [:show, :update, :destroy]
     if @product.update(product_params)
       render json: @product
     else
-      render json: @product.errors, status: 422
+      render_error(@product)
   end
 
   def destroy
